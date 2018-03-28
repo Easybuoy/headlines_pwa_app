@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Headilie App</title>
+    <title>Headline App</title>
     <link rel="stylesheet"  href="/css/bootstrap.min.css">
     <!--<link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">-->
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -17,14 +17,37 @@
     </div>
 </nav>
 
+<script src="js/countries.js"></script>
 
 <div class="container">
     <div class="jumbotron">
         <h3 class="text-center"> Search For Any News</h3>
-        <form id="searchForm">
-            <input type="text" class="form-control" id="searchText" placeholder="Search News...">
-        </form>
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <form id="searchForm">
+                    <input type="text" class="form-control-sm" id="searchText" placeholder="Search News...">
+                    <!--<button class="btn btn-outline-secondary">Sources</button>-->
+                </form>
+            </div>
+            <div class="col-md-4 text-center">
+                <select id="country" class="form-control-sm"> </select>
+            </div>
+            <div class="col-md-4 text-center">
+                <button id="sources" class="btn btn-primary">Filter Sources</button>
+            </div>
+        </div>
+
+
     </div>
+
+
+
+        <script>var opt = '<option> Select Country</option>'; for (var key in isoCountries) {
+//            var keyy = isoCountries[key];
+            var val = isoCountries[key].name;
+
+            opt +=  "<option value="+key+">"+val+"</option>";
+        }  document.getElementById('country').innerHTML = opt </script>
 </div>
 
 <div class="container">
