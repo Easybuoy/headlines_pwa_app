@@ -41,34 +41,14 @@ function getNewsBySearch(searchText) {
                 console.log(singlenews);
                 output += `
 
-<section>
-        <!--<h2 class="text-center h1 py-5">-->
-            <!--<strong>Our best projects</strong>-->
-        <!--</h2>-->
-        <div class="row text-center">
-            <div class="col-lg-4 col-md-12 mb-4">
-                <div class="view overlay rounded z-depth-1">
-                    <img src="${singlenews.urlToImage}" class="img-fluid" alt="Sample project image">
-                    <a>
-                        <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>
-
-                <!--Excerpt-->
-                <div class="card-body mt-3">
-                    <h4>
-                        <strong>${singlenews.title}</strong>
-                    </h4>
-                    <p class="grey-text">${singlenews.description}</p>
-                    <a class="btn btn-indigo btn-sm" href="" target="_blank">
-                        <i class="fa fa-clone left"></i> View News</a>
-                </div>
+            <div class="col-md-4">
+            <div class="card-body text-center">
+         <img class="card-image-top" src="${singlenews.urlToImage}">
+            <h5>${singlenews.title}</h5>
+            <a onclick="movieSelected('${singlenews.imdbID}')" class="btn btn-primary" href="#">Movie Details</a>
 
             </div>
-        </div>
-    </section>
-
-
+            </div>
           `;
             });
 

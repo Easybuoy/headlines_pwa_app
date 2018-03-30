@@ -2,8 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Headline App</title>
-    <link rel="stylesheet"  href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/mdb.min.css" rel="stylesheet">
+
+    <!--<link rel="stylesheet"  href="/css/bootstrap.min.css">-->
     <!--<link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">-->
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -36,7 +42,7 @@
                 <select id="country" class="form-control-sm"> </select>
             </div>
             <div class="col-md-4 text-center">
-                <button id="sources" class="btn btn-primary">Filter Sources</button>
+                <button id="sources" type="button" class="btn btn-outline-default btn-rounded waves-effect">Filter Sources</button>
             </div>
         </div>
 
@@ -45,7 +51,44 @@
 
 
 
-        <script>var opt = '<option> Select Country</option>'; for (var key in isoCountries) {
+
+    <!--<section>-->
+        <!--<h2 class="text-center h1 py-5">-->
+            <!--<strong>Our best projects</strong>-->
+        <!--</h2>-->
+        <!--<p class="grey-text pb-5 text-center">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur-->
+            <!--sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>-->
+
+        <!--<div class="row text-center">-->
+            <!--<div class="col-lg-4 col-md-12 mb-4">-->
+                <!--<div class="view overlay rounded z-depth-1">-->
+                    <!--<img src="https://mdbootstrap.com/img/Photos/Others/images/58.jpg" class="img-fluid" alt="Sample project image">-->
+                    <!--<a>-->
+                        <!--<div class="mask rgba-white-slight"></div>-->
+                    <!--</a>-->
+                <!--</div>-->
+
+                <!--&lt;!&ndash;Excerpt&ndash;&gt;-->
+                <!--<div class="card-body mt-3">-->
+                    <!--<h4>-->
+                        <!--<strong>Title of the news</strong>-->
+                    <!--</h4>-->
+                    <!--<p class="grey-text">Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates-->
+                        <!--repudiandae.-->
+                    <!--</p>-->
+                    <!--<a class="btn btn-indigo btn-sm">-->
+                        <!--<i class="fa fa-clone left"></i> View project</a>-->
+                <!--</div>-->
+
+            <!--</div>-->
+        <!--</div>-->
+    <!--</section>-->
+
+
+
+
+
+    <script>var opt = '<option> Select Country</option>'; for (var key in isoCountries) {
 //            var keyy = isoCountries[key];
             var val = isoCountries[key].name;
 
@@ -56,11 +99,19 @@
 <div class="container">
     <div id="searchnews" class="row"></div>
 </div>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/popper.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/mdb.min.js"></script>
 
-<script src="js/jquery-3.3.1.min.js"></script>
+
+<!--<script src="js/jquery-3.3.1.min.js"></script>-->
 <script src="js/axios.min.js"></script>
 <!--<script src="api/newsapi.js"></script>-->
 <!--<script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
 <script src="js/main.js"></script>
+
+
+
 </body>
 </html>
