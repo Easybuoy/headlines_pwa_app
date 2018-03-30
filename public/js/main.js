@@ -39,8 +39,13 @@ function getNewsBySearch(searchText) {
             let output = '';
             $.each(news, (index, singlenews) => {
                 console.log(singlenews);
-                output += `
+                var trimmedDescription = '';
+                if(singlenews.description){
+                    var trimmedDescription = singlenews.description.substr(0, 50);
+                }
 
+                output += `
+                
         <!--<h2 class="text-center h1 py-5">-->
             <!--<strong>Our best projects</strong>-->
         <!--</h2>-->
@@ -57,7 +62,7 @@ function getNewsBySearch(searchText) {
                     <h4>
                         <strong>${singlenews.title}</strong>
                     </h4>
-                    <p class="grey-text">${singlenews.description}</p>
+                    <p class="grey-text">${trimmedDescription}</p>
                     <a class="btn btn-indigo btn-sm" href="" target="_blank">
                         <i class="fa fa-clone left"></i> View News</a>
                 </div>
@@ -67,7 +72,20 @@ function getNewsBySearch(searchText) {
             $('#searchnews').html(output);
         })
         .catch((err) => {
-            console.log(err)
+            console.log(err);
+            if (!err.response) {
+                // network error
+                console.log('asdas')
+            } else {
+
+            }
+
+            //
+            // $("#error").click(function () {
+            //     jQuery('#error').click()
+            //     toastr["info"]("I was launched via jQuery!")
+            // });
+
         });
 }
 
@@ -91,3 +109,6 @@ function getNewsByCountry(country){
             console.log(err)
         });
 }
+
+
+
