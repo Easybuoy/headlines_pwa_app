@@ -46,7 +46,7 @@ function getNewsBySearch(searchText) {
         <!--</h2>-->
             <div class="col-lg-4 col-md-12 mb-4">
                 <div class="view overlay rounded z-depth-1">
-                    <img src="${singlenews.urlToImage}" class="img-fluid" alt="Sample project image" id="card-img">
+                    <img src="${singlenews.urlToImage}" class="img-fluid" alt="Sample project image" id="card-img" style="height: 250px; width: 100%;">
                     <a>
                         <div class="mask rgba-white-slight"></div>
                     </a>

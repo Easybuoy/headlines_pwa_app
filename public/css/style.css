@@ -1,4 +1,11 @@
 /* Your custom styles */
 #searchnews .img{
     width: 10px;
+    height: 100px;
+}
+
+#searchnews .col-lg-4 .col-md-12 .img{
+    max-width: 100%;
+    height: 250px;
+    width: 100%;
 }
