@@ -72,10 +72,9 @@ function getNewsBySearch(searchText) {
             $('#searchnews').html(output);
         })
         .catch((err) => {
-            console.log(err);
             if (!err.response) {
                 // network error
-                console.log('asdas')
+                errorSnackBar();
             } else {
 
             }
@@ -95,7 +94,12 @@ function getNewsBySources(){
             console.log(response);
         })
         .catch((err) => {
-            console.log(err)
+            if (!err.response) {
+                // network error
+                errorSnackBar();
+            } else {
+
+            }
         });
 }
 
@@ -106,9 +110,20 @@ function getNewsByCountry(country){
             console.log(response);
         })
         .catch((err) => {
-            console.log(err)
+            if (!err.response) {
+                // network error
+                errorSnackBar();
+            } else {
+
+            }
         });
 }
 
 
+
+function errorSnackBar() {
+    var x = document.getElementById("snackbar")
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
 
