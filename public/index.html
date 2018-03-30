@@ -51,18 +51,14 @@
 
 
 
-
     <!--<section>-->
-        <!--<h2 class="text-center h1 py-5">-->
-            <!--<strong>Our best projects</strong>-->
-        <!--</h2>-->
-        <!--<p class="grey-text pb-5 text-center">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur-->
-            <!--sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>-->
-
+        <!--&lt;!&ndash;<h2 class="text-center h1 py-5">&ndash;&gt;-->
+        <!--&lt;!&ndash;<strong>Our best projects</strong>&ndash;&gt;-->
+        <!--&lt;!&ndash;</h2>&ndash;&gt;-->
         <!--<div class="row text-center">-->
             <!--<div class="col-lg-4 col-md-12 mb-4">-->
                 <!--<div class="view overlay rounded z-depth-1">-->
-                    <!--<img src="https://mdbootstrap.com/img/Photos/Others/images/58.jpg" class="img-fluid" alt="Sample project image">-->
+                    <!--<img src="https://mdbootstrap.com/img/Photos/Others/images/58.jpg" class="img-fluid" alt="Sample project image" id="card-img">-->
                     <!--<a>-->
                         <!--<div class="mask rgba-white-slight"></div>-->
                     <!--</a>-->
@@ -71,18 +67,57 @@
                 <!--&lt;!&ndash;Excerpt&ndash;&gt;-->
                 <!--<div class="card-body mt-3">-->
                     <!--<h4>-->
-                        <!--<strong>Title of the news</strong>-->
+                        <!--<strong>${singlenews.title}</strong>-->
                     <!--</h4>-->
-                    <!--<p class="grey-text">Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates-->
-                        <!--repudiandae.-->
-                    <!--</p>-->
-                    <!--<a class="btn btn-indigo btn-sm">-->
-                        <!--<i class="fa fa-clone left"></i> View project</a>-->
+                    <!--<p class="grey-text">${singlenews.description}</p>-->
+                    <!--<a class="btn btn-indigo btn-sm" href="" target="_blank">-->
+                        <!--<i class="fa fa-clone left"></i> View News</a>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="col-lg-4 col-md-12 mb-4">-->
+                <!--<div class="view overlay rounded z-depth-1">-->
+                    <!--<img src="https://mdbootstrap.com/img/Photos/Others/images/58.jpg" class="img-fluid" alt="Sample project image" id="card-img">-->
+                    <!--<a>-->
+                        <!--<div class="mask rgba-white-slight"></div>-->
+                    <!--</a>-->
                 <!--</div>-->
 
+                <!--&lt;!&ndash;Excerpt&ndash;&gt;-->
+                <!--<div class="card-body mt-3">-->
+                    <!--<h4>-->
+                        <!--<strong>${singlenews.title}</strong>-->
+                    <!--</h4>-->
+                    <!--<p class="grey-text">${singlenews.description}</p>-->
+                    <!--<a class="btn btn-indigo btn-sm" href="" target="_blank">-->
+                        <!--<i class="fa fa-clone left"></i> View News</a>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="col-lg-4 col-md-12 mb-4">-->
+                <!--<div class="view overlay rounded z-depth-1">-->
+                    <!--<img src="https://mdbootstrap.com/img/Photos/Others/images/58.jpg" class="img-fluid" alt="Sample project image" id="card-img">-->
+                    <!--<a>-->
+                        <!--<div class="mask rgba-white-slight"></div>-->
+                    <!--</a>-->
+                <!--</div>-->
+
+                <!--&lt;!&ndash;Excerpt&ndash;&gt;-->
+                <!--<div class="card-body mt-3">-->
+                    <!--<h4>-->
+                        <!--<strong>${singlenews.title}</strong>-->
+                    <!--</h4>-->
+                    <!--<p class="grey-text">${singlenews.description}</p>-->
+                    <!--<a class="btn btn-indigo btn-sm" href="" target="_blank">-->
+                        <!--<i class="fa fa-clone left"></i> View News</a>-->
+                <!--</div>-->
             <!--</div>-->
         <!--</div>-->
     <!--</section>-->
+
+
+
+
 
 
 
@@ -97,8 +132,15 @@
 </div>
 
 <div class="container">
-    <div id="searchnews" class="row"></div>
-</div>
+    <section>
+        <div class="row text-center" id="searchnews">
+
+        </div>
+    </section>
+
+
+
+
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/popper.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
