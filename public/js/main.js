@@ -35,7 +35,7 @@ function getNewsBySearch(searchText) {
     axios.get('https://newsapi.org/v2/everything?q='+searchText+'&apiKey='+APIKEY)
         .then((response) => {
             let news =  response.data.articles;
-// console.log(news)
+
             let output = '';
             $.each(news, (index, singlenews) => {
                 console.log(singlenews);
@@ -45,10 +45,6 @@ function getNewsBySearch(searchText) {
                 }
 
                 output += `
-                
-        <!--<h2 class="text-center h1 py-5">-->
-            <!--<strong>Our best projects</strong>-->
-        <!--</h2>-->
             <div class="col-lg-4 col-md-12 mb-4">
                 <div class="view overlay rounded z-depth-1">
                     <img src="${singlenews.urlToImage}" class="img-fluid" alt="Sample project image" id="card-img" style="height: 250px; width: 100%;">
@@ -57,13 +53,12 @@ function getNewsBySearch(searchText) {
                     </a>
                 </div>
 
-                <!--Excerpt-->
                 <div class="card-body mt-3">
                     <h4>
                         <strong>${singlenews.title}</strong>
                     </h4>
                     <p class="grey-text">${trimmedDescription}</p>
-                    <a class="btn btn-indigo btn-sm" href="" target="_blank">
+                    <a class="btn btn-indigo btn-sm" href="${singlenews.url}" target="_blank">
                         <i class="fa fa-clone left"></i> View News</a>
                 </div>
             </div>
@@ -91,7 +86,31 @@ function getNewsBySearch(searchText) {
 function getNewsBySources(){
     axios.get('https://newsapi.org/v2/sources?apiKey='+APIKEY)
         .then((response) => {
-            console.log(response);
+            let sources =  response.data.sources;
+            let output = '';
+            $.each(sources, (index, source) => {
+                console.log(source);
+                // var trimmedDescription = '';
+                // if(singlenews.description){
+                //     var trimmedDescription = singlenews.description.substr(0, 50);
+                // }
+
+                output += `
+            <div class="col-lg-4 col-md-12 mb-4">
+                
+
+                <div class="card-body mt-3">
+                    <h4>
+                        <strong>${source.name}</strong>
+                    </h4>
+                     <p class="grey-text">${source.description}</p>
+                    <a class="btn btn-indigo btn-sm" href="${source.url}" target="_blank">
+                        <i class="fa fa-clone left"></i> View Source</a>
+                </div>
+            </div>
+          `;
+            });
+            $('#source').html(output);
         })
         .catch((err) => {
             if (!err.response) {
@@ -108,6 +127,36 @@ function getNewsByCountry(country){
     axios.get('https://newsapi.org/v2/top-headlines?country='+country+'&apiKey='+APIKEY)
         .then((response) => {
             console.log(response);
+            let countrynews =  response.data.articles;
+
+            let output = '';
+            $.each(countrynews, (index, singlenews) => {
+                var trimmedDescription = '';
+                if(singlenews.description){
+                    var trimmedDescription = singlenews.description.substr(0, 50);
+                }
+
+                output += `
+            <div class="col-lg-4 col-md-12 mb-4">
+                <div class="view overlay rounded z-depth-1">
+                    <img src="${singlenews.urlToImage}" class="img-fluid" alt="Sample project image" id="card-img" style="height: 250px; width: 100%;">
+                    <a>
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+
+                <div class="card-body mt-3">
+                    <h4>
+                        <strong>${singlenews.title}</strong>
+                    </h4>
+                    <p class="grey-text">${trimmedDescription}</p>
+                    <a class="btn btn-indigo btn-sm" href="${singlenews.url}" target="_blank">
+                        <i class="fa fa-clone left"></i> View News</a>
+                </div>
+            </div>
+          `;
+            });
+            $('#countrynews').html(output);
         })
         .catch((err) => {
             if (!err.response) {
