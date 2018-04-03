@@ -3,6 +3,7 @@
 var CACHE_NAME = 'my-site-cache-v1';
 var urlsToCache = [
     '/',
+    'favicon.ico',
     'css/bootstrap.min.css',
     'css/mdb.min.css',
     'css/style.css',

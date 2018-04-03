@@ -9,30 +9,67 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/mdb.min.css" rel="stylesheet">
     <link rel="manifest" href="manifest.json">
-
+    <link rel="icon" href="favicon.png" sizes="16x16" type="image/png" />
     <!--<link rel="stylesheet"  href="/css/bootstrap.min.css">-->
     <!--<link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">-->
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 
-<nav class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">Headline</a>
+
+
+<!--Main Navigation-->
+<header>
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark red scrolling-navbar">
+        <a class="navbar-brand" href="index.html"><strong>Headline</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Opinions</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav nav-flex-icons">
+                <li class="nav-item">
+                    <a class="nav-link"><i class="fa fa-facebook"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"><i class="fa fa-instagram"></i></a>
+                </li>
+            </ul>
         </div>
-    </div>
-</nav>
+    </nav>
+
+</header>
+<!--Main Navigation-->
 
 <script src="js/countries.js"></script>
 
+
+
 <div class="container">
-    <div class="jumbotron">
+    <div class="jumbotron hoverable">
         <h3 class="text-center"> Search For Any News</h3>
         <div class="row">
             <div class="col-md-4 text-center">
-                <form id="searchForm">
-                    <input type="text" class="form-control-sm" id="searchText" placeholder="Search News...">
+                <form id="searchForm" class="md-form">
+                    <label for="searchText" class="text-center">Search By Headline</label>
+                    <input type="text" class="form-control" id="searchText" placeholder="Search News...">
                     <!--<button class="btn btn-outline-secondary">Sources</button>-->
                 </form>
                 <!--<button type="button" class="btn btn-default" aria-label="Left Align">-->
@@ -50,80 +87,6 @@
 
     </div>
 
-
-
-    <!--<section>-->
-        <!--&lt;!&ndash;<h2 class="text-center h1 py-5">&ndash;&gt;-->
-        <!--&lt;!&ndash;<strong>Our best projects</strong>&ndash;&gt;-->
-        <!--&lt;!&ndash;</h2>&ndash;&gt;-->
-        <!--<div class="row text-center">-->
-            <!--<div class="col-lg-4 col-md-12 mb-4">-->
-                <!--<div class="view overlay rounded z-depth-1">-->
-                    <!--<img src="https://mdbootstrap.com/img/Photos/Others/images/58.jpg" class="img-fluid" alt="Sample project image" id="card-img">-->
-                    <!--<a>-->
-                        <!--<div class="mask rgba-white-slight"></div>-->
-                    <!--</a>-->
-                <!--</div>-->
-
-                <!--&lt;!&ndash;Excerpt&ndash;&gt;-->
-                <!--<div class="card-body mt-3">-->
-                    <!--<h4>-->
-                        <!--<strong>${singlenews.title}</strong>-->
-                    <!--</h4>-->
-                    <!--<p class="grey-text">${singlenews.description}</p>-->
-                    <!--<a class="btn btn-indigo btn-sm" href="" target="_blank">-->
-                        <!--<i class="fa fa-clone left"></i> View News</a>-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="col-lg-4 col-md-12 mb-4">-->
-                <!--<div class="view overlay rounded z-depth-1">-->
-                    <!--<img src="https://mdbootstrap.com/img/Photos/Others/images/58.jpg" class="img-fluid" alt="Sample project image" id="card-img">-->
-                    <!--<a>-->
-                        <!--<div class="mask rgba-white-slight"></div>-->
-                    <!--</a>-->
-                <!--</div>-->
-
-                <!--&lt;!&ndash;Excerpt&ndash;&gt;-->
-                <!--<div class="card-body mt-3">-->
-                    <!--<h4>-->
-                        <!--<strong>${singlenews.title}</strong>-->
-                    <!--</h4>-->
-                    <!--<p class="grey-text">${singlenews.description}</p>-->
-                    <!--<a class="btn btn-indigo btn-sm" href="" target="_blank">-->
-                        <!--<i class="fa fa-clone left"></i> View News</a>-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="col-lg-4 col-md-12 mb-4">-->
-                <!--<div class="view overlay rounded z-depth-1">-->
-                    <!--<img src="https://mdbootstrap.com/img/Photos/Others/images/58.jpg" class="img-fluid" alt="Sample project image" id="card-img">-->
-                    <!--<a>-->
-                        <!--<div class="mask rgba-white-slight"></div>-->
-                    <!--</a>-->
-                <!--</div>-->
-
-                <!--&lt;!&ndash;Excerpt&ndash;&gt;-->
-                <!--<div class="card-body mt-3">-->
-                    <!--<h4>-->
-                        <!--<strong>${singlenews.title}</strong>-->
-                    <!--</h4>-->
-                    <!--<p class="grey-text">${singlenews.description}</p>-->
-                    <!--<a class="btn btn-indigo btn-sm" href="" target="_blank">-->
-                        <!--<i class="fa fa-clone left"></i> View News</a>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</section>-->
-
-
-
-
-
-
-
-
-
     <script>var opt = '<option> Select Country</option>'; for (var key in isoCountries) {
 //            var keyy = isoCountries[key];
             var val = isoCountries[key].name;
@@ -131,6 +94,9 @@
             opt +=  "<option value="+key+">"+val+"</option>";
         }  document.getElementById('country').innerHTML = opt </script>
 </div>
+
+
+
 
 <div class="container">
     <section>
@@ -146,7 +112,7 @@
 
         </div>
     </section>
-
+</div>
 
     <div id="snackbar">Connection Error....Check Connectivity</div>
 
@@ -162,7 +128,6 @@
 <!--<script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
 <script src="js/main.js"></script>
 <script src="js/serviceworker.js"></script>
-
 
 
 </body>
