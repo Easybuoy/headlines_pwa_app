@@ -3,9 +3,9 @@ if('serviceWorker' in navigator) {
         '/sw.js'
     )
         .then(function (registration) {
-            console.log('Registered', registration)
+            console.log('Registered', registration.scope)
         }).catch(function (err) {
        console.log(err)
     });
-    console.log('Worker Actwive');
+    console.log('Worker Active');
 }
