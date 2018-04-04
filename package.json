@@ -1,0 +1,27 @@
+{
+  "name": "headlines_app",
+  "version": "1.0.0",
+  "description": "node offline app",
+  "main": "app.js",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.3",
+    "idb": "^2.1.1",
+    "newsapi": "^2.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start":"node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/Easybuoy/headlines_pwa.git"
+  },
+  "author": "Ekunola Ezekiel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/Easybuoy/headlines_pwa/issues"
+  },
+  "homepage": "https://gitlab.com/Easybuoy/headlines_pwa#README"
+}
