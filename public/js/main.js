@@ -41,8 +41,6 @@ function getNewsBySearch(searchText) {
             this._dbPromise.then(function(db) {
                 if (!db) return;
 
-                // TODO: put each message into the 'wittrs'
-                // object store.
                 var tx = db.transaction('everything', 'readwrite');
                 var store = tx.objectStore('everything');
                 news.forEach(function (everything) {
