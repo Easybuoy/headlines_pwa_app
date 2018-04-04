@@ -31,6 +31,7 @@ $(document).ready(() => {
 
 
 function getNewsBySearch(searchText) {
+    $('#searchnews').empty();
     console.log(searchText);
     axios.get('https://newsapi.org/v2/everything?q='+searchText+'&apiKey='+APIKEY)
         .then((response) => {
@@ -84,6 +85,7 @@ function getNewsBySearch(searchText) {
 }
 
 function getNewsBySources(){
+    $('#searchnews').empty();
     axios.get('https://newsapi.org/v2/sources?apiKey='+APIKEY)
         .then((response) => {
             let sources =  response.data.sources;
@@ -110,7 +112,7 @@ function getNewsBySources(){
             </div>
           `;
             });
-            $('#source').html(output);
+            $('#searchnews').html(output);
         })
         .catch((err) => {
             if (!err.response) {
@@ -124,6 +126,8 @@ function getNewsBySources(){
 
 function getNewsByCountry(country){
     // country = country.toLowerCase();
+    $('#searchnews').empty();
+    openDatabase();
     axios.get('https://newsapi.org/v2/top-headlines?country='+country+'&apiKey='+APIKEY)
         .then((response) => {
             console.log(response);
@@ -156,7 +160,8 @@ function getNewsByCountry(country){
             </div>
           `;
             });
-            $('#countrynews').html(output);
+
+            $('#searchnews').html(output);
         })
         .catch((err) => {
             if (!err.response) {
@@ -168,11 +173,29 @@ function getNewsByCountry(country){
         });
 }
 
-
-
 function errorSnackBar() {
-    var x = document.getElementById("snackbar")
+    var x = document.getElementById("snackbar");
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
+
+function openDatabase() {
+    // If the browser doesn't support service worker,
+    // we don't care about having a database
+    if (!navigator.serviceWorker) {
+        return Promise.resolve();
+    }
+
+    // TODO: return a promise for a database called 'wittr'
+    // that contains one objectStore: 'wittrs'
+    // that uses 'id' as its key
+    // and has an index called 'by-date', which is sorted
+    // by the 'time' property
+    console.log('a');
+    return idb.open('headline', 1, function (upgradeDb) {
+        var store = upgradeDb.createObjectStore('news', {
+            keyPath: 'id'
+        });
+    })
+}

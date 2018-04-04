@@ -1,9 +1,7 @@
-
-
 var CACHE_NAME = 'my-site-cache-v1';
 var urlsToCache = [
     '/',
-    'favicon.ico',
+    'favicon.png',
     'css/bootstrap.min.css',
     'css/mdb.min.css',
     'css/style.css',
@@ -22,8 +20,11 @@ self.addEventListener('install', function(event) {
             .then(function(cache) {
                 console.log('Opened cache');
                 return cache.addAll(urlsToCache);
-            })
+            }).catch(function (e) {
+
+        })
     );
+
 });
 
 
@@ -67,3 +68,4 @@ self.addEventListener('fetch', function(event) {
             })
     );
 });
+
