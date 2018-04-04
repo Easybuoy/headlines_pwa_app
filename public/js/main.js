@@ -1,4 +1,5 @@
 const APIKEY = '94446a2fa0e5422499caf4725c83e818';
+this._dbPromise = openDatabase();
 $(document).ready(() => {
     $('#searchForm').keyup( (e) => {
         let searchText = $('#searchText').val();
@@ -36,6 +37,20 @@ function getNewsBySearch(searchText) {
     axios.get('https://newsapi.org/v2/everything?q='+searchText+'&apiKey='+APIKEY)
         .then((response) => {
             let news =  response.data.articles;
+
+            this._dbPromise.then(function(db) {
+                if (!db) return;
+
+                // TODO: put each message into the 'wittrs'
+                // object store.
+                var tx = db.transaction('everything', 'readwrite');
+                var store = tx.objectStore('everything');
+                news.forEach(function (everything) {
+                    store.put(everything);
+                })
+
+            });
+
 
             let output = '';
             $.each(news, (index, singlenews) => {
@@ -89,6 +104,21 @@ function getNewsBySources(){
     axios.get('https://newsapi.org/v2/sources?apiKey='+APIKEY)
         .then((response) => {
             let sources =  response.data.sources;
+
+            this._dbPromise.then(function(db) {
+                if (!db) return;
+
+                // TODO: put each message into the 'wittrs'
+                // object store.
+                var tx = db.transaction('sourcenews', 'readwrite');
+                var store = tx.objectStore('sourcenews');
+                sources.forEach(function (news) {
+                    console.log(news);
+                    store.put(news);
+                })
+
+            });
+
             let output = '';
             $.each(sources, (index, source) => {
                 console.log(source);
@@ -127,11 +157,24 @@ function getNewsBySources(){
 function getNewsByCountry(country){
     // country = country.toLowerCase();
     $('#searchnews').empty();
-    openDatabase();
     axios.get('https://newsapi.org/v2/top-headlines?country='+country+'&apiKey='+APIKEY)
         .then((response) => {
-            console.log(response);
+            // console.log(response);
             let countrynews =  response.data.articles;
+            this._dbPromise.then(function(db) {
+                if (!db) return;
+
+                // TODO: put each message into the 'wittrs'
+                // object store.
+                var tx = db.transaction('countrynews', 'readwrite');
+                var store = tx.objectStore('countrynews');
+                countrynews.forEach(function (news) {
+                    console.log(news);
+                    store.put(news);
+                })
+
+            });
+
 
             let output = '';
             $.each(countrynews, (index, singlenews) => {
@@ -194,8 +237,19 @@ function openDatabase() {
     // by the 'time' property
     console.log('a');
     return idb.open('headline', 1, function (upgradeDb) {
-        var store = upgradeDb.createObjectStore('news', {
-            keyPath: 'id'
-        });
-    })
+        // switch (upgradeDb.oldVersion){
+            // case 0:
+                var store = upgradeDb.createObjectStore('sourcenews', {
+                    keyPath: 'id'
+                });
+            // case 1:
+                upgradeDb.createObjectStore('everything', {
+                    keyPath: 'publishedAt'
+                });
+            // case 2:
+                upgradeDb.createObjectStore('countrynews', {
+                   keyPath: 'publishedAt'
+                });
+        // }
+    });
 }
