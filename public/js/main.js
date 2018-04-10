@@ -162,7 +162,7 @@ function getNewsBySourceHeadline(id){
     axios.get('https://newsapi.org/v2/top-headlines?sources='+id+'&apiKey='+APIKEY)
         .then((response) => {
             let headlinesources =  response.data.articles;
-            if(headlinesources().length == 0){
+            if(headlinesources.length == 0){
                 noArticleFound();
 
                 return;
