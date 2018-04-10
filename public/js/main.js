@@ -4,7 +4,6 @@ $(document).ready(() => {
     $('#searchForm').keyup( (e) => {
         let searchText = $('#searchText').val();
         getNewsBySearch(searchText);
-        // console.log(searchText)
         e.preventDefault();
 
 
@@ -25,7 +24,6 @@ $(document).ready(() => {
     $('#country').on('change', (e) => {
        let country = $('#country').val();
         getNewsByCountry(country);
-        // console.log(searchText)
         e.preventDefault();
     });
 });
@@ -56,7 +54,6 @@ function getNewsBySearch(searchText) {
 
             let output = '';
             $.each(news, (index, singlenews) => {
-                console.log(singlenews);
                 var trimmedDescription = '';
                 if(singlenews.description){
                     var trimmedDescription = singlenews.description.substr(0, 50);
@@ -114,12 +111,9 @@ function getNewsBySources(){
             this._dbPromise.then(function(db) {
                 if (!db) return;
 
-                // TODO: put each message into the 'wittrs'
-                // object store.
                 var tx = db.transaction('sourcenews', 'readwrite');
                 var store = tx.objectStore('sourcenews');
                 sources.forEach(function (news) {
-                    console.log(news);
                     store.put(news);
                 })
 
@@ -127,8 +121,6 @@ function getNewsBySources(){
 
             let output = '';
             $.each(sources, (index, source) => {
-                console.log(source);
-
                 output += `
             <div class="col-lg-4 col-md-12 mb-4">
                 
@@ -170,7 +162,6 @@ function getNewsBySourceHeadline(id){
 
             let output = '';
             $.each(headlinesources, (index, headlinesource) => {
-                console.log(headlinesource);
                 var trimmedDescription = '';
                 if(headlinesource.description){
                     var trimmedDescription = headlinesource.description.substr(0, 50);
@@ -221,8 +212,6 @@ function getNewsByCountry(country){
             this._dbPromise.then(function(db) {
                 if (!db) return;
 
-                // TODO: put each message into the 'wittrs'
-                // object store.
                 var tx = db.transaction('countrynews', 'readwrite');
                 var store = tx.objectStore('countrynews');
                 countrynews.forEach(function (news) {
@@ -260,7 +249,6 @@ function getNewsByCountry(country){
 
         })
         .catch((err) => {
-        console.log(err)
             if (!err.response) {
                 // network error
                 errorSnackBar();
@@ -284,12 +272,6 @@ function openDatabase() {
         return Promise.resolve();
     }
 
-    // TODO: return a promise for a database called 'wittr'
-    // that contains one objectStore: 'wittrs'
-    // that uses 'id' as its key
-    // and has an index called 'by-date', which is sorted
-    // by the 'time' property
-    console.log('a');
     return idb.open('headline', 1, function (upgradeDb) {
         // switch (upgradeDb.oldVersion){
             // case 0:
