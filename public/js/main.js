@@ -49,7 +49,14 @@ function getNewsBySearch(searchText) {
                     store.put(everything);
                 });
 
-            });
+                store.index('publishedAt').openCursor(null, 'prev').then(function (cursor) {
+                    return cursor.advance(30);
+                }).then(function deleteReset(cursor) {
+                    if(!cursor) return;
+                    cursor.delete();
+                    return cursor.continue().then(deleteReset);
+                })
+            }); 
 
 
             let output = '';
@@ -117,6 +124,13 @@ function getNewsBySources(){
                     store.put(news);
                 })
 
+                store.index('id').openCursor(null, 'prev').then(function (cursor) {
+                    return cursor.advance(30);
+                }).then(function deleteReset(cursor) {
+                    if(!cursor) return;
+                    cursor.delete();
+                    return cursor.continue().then(deleteReset);
+                })
             });
 
             let output = '';
@@ -218,6 +232,13 @@ function getNewsByCountry(country){
                     store.put(news);
                 })
 
+                store.index('publishedAt').openCursor(null, 'prev').then(function (cursor) {
+                    return cursor.advance(30);
+                }).then(function deleteReset(cursor) {
+                    if(!cursor) return;
+                    cursor.delete();
+                    return cursor.continue().then(deleteReset);
+                })
             });
             let output = '';
             $.each(countrynews, (index, singlenews) => {
@@ -301,4 +322,20 @@ function noArticleFound() {
     </div>
     `;
     $('#searchnews').html(output);
+}
+
+function getNewsFromIDB(tbname) {
+
+    this._dbPromise.then(function(db) {
+        if (!db) return;
+        var index = db.transaction(tbname)
+            .objectStore(tbname);
+
+        return index.getAll().then(function (messages) {
+            console.log(messages.reverse());
+        });
+
+    });
+
+
 }
