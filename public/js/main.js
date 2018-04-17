@@ -49,13 +49,7 @@ function getNewsBySearch(searchText) {
                     store.put(everything);
                 });
 
-                store.index('publishedAt').openCursor(null, 'prev').then(function (cursor) {
-                    return cursor.advance(30);
-                }).then(function deleteReset(cursor) {
-                    if(!cursor) return;
-                    cursor.delete();
-                    return cursor.continue().then(deleteReset);
-                })
+                cleanDB(store)
             }); 
 
 
@@ -122,15 +116,9 @@ function getNewsBySources(){
                 var store = tx.objectStore('sourcenews');
                 sources.forEach(function (news) {
                     store.put(news);
-                })
+                });
 
-                store.index('id').openCursor(null, 'prev').then(function (cursor) {
-                    return cursor.advance(30);
-                }).then(function deleteReset(cursor) {
-                    if(!cursor) return;
-                    cursor.delete();
-                    return cursor.continue().then(deleteReset);
-                })
+                cleanDB(store)
             });
 
             let output = '';
@@ -230,15 +218,9 @@ function getNewsByCountry(country){
                 var store = tx.objectStore('countrynews');
                 countrynews.forEach(function (news) {
                     store.put(news);
-                })
+                });
 
-                store.index('publishedAt').openCursor(null, 'prev').then(function (cursor) {
-                    return cursor.advance(30);
-                }).then(function deleteReset(cursor) {
-                    if(!cursor) return;
-                    cursor.delete();
-                    return cursor.continue().then(deleteReset);
-                })
+                cleanDB(store);
             });
             let output = '';
             $.each(countrynews, (index, singlenews) => {
@@ -271,7 +253,7 @@ function getNewsByCountry(country){
         })
         .catch((err) => {
             if (!err.response) {
-                // network error
+                 // network error
                 errorSnackBar();
             } else {
 
@@ -331,11 +313,101 @@ function getNewsFromIDB(tbname) {
         var index = db.transaction(tbname)
             .objectStore(tbname);
 
-        return index.getAll().then(function (messages) {
-            console.log(messages.reverse());
+        index.getAll().then(function (response) {
+            output(response, tbname);
         });
 
     });
 
 
+};
+
+function cleanDB(store) {
+    store.openCursor(null, 'prev').then(function (cursor) {
+        return cursor.advance(100);
+    }).then(function deleteReset(cursor) {
+        if(!cursor) return;
+        cursor.delete();
+        return cursor.continue().then(deleteReset);
+    })
+};
+
+function output(response, tbname) {
+    let output = '';
+    if(tbname == 'headline'){
+        var storednews = response.reverse();
+
+        $.each(storednews, (index, news) => {
+            var trimmedDescription = '';
+            if(news.description){
+                var trimmedDescription = news.description.substr(0, 50);
+            }
+            output += `
+            <div class="col-lg-4 col-md-12 mb-4">
+                <div class="view overlay rounded z-depth-1">
+                    <img src="${news.urlToImage}" class="img-fluid" alt="${news.title}" id="card-img" style="height: 250px; width: 100%;">
+                    <a>
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+
+                <div class="card-body mt-3">
+                    <h4>
+                        <strong>${news.title}</strong>
+                    </h4>
+                    <p class="grey-text">${trimmedDescription}</p>
+                    <a class="btn btn-deep-orange btn-sm" href="${news.url}" target="_blank">
+                        <i class="fa fa-clone left"></i> View News</a>
+                </div>
+            </div>
+          `;
+        });
+    }else if(tbname == 'sourcenews'){
+        var sources = response;
+        $.each(sources, (index, source) => {
+            output += `
+            <div class="col-lg-4 col-md-12 mb-4">
+                
+
+                <div class="card-body mt-3">
+                    <h4>
+                        <strong>${source.name}</strong>
+                    </h4>
+                     <p class="grey-text">${source.description}</p>
+                    <a class="btn btn-deep-orange btn-sm" onclick="getNewsBySourceHeadline('${source.id}')" href="#">
+                        <i class="fa fa-clone left"></i> View Source Headline</a>
+                </div>
+            </div>
+          `;
+        });
+    }else{
+        var countrynews = response.reverse();
+        $.each(countrynews, (index, singlenews) => {
+            var trimmedDescription = '';
+            if(singlenews.description){
+                var trimmedDescription = singlenews.description.substr(0, 50);
+            }
+            output += `
+            <div class="col-lg-4 col-md-12 mb-4">
+                <div class="view overlay rounded z-depth-1">
+                    <img src="${singlenews.urlToImage}" class="img-fluid" alt="${singlenews.title}" id="card-img" style="height: 250px; width: 100%;">
+                    <a>
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+
+                <div class="card-body mt-3">
+                    <h4>
+                        <strong>${singlenews.title}</strong>
+                    </h4>
+                    <p class="grey-text">${trimmedDescription}</p>
+                    <a class="btn btn-deep-orange btn-sm" href="${singlenews.url}" target="_blank">
+                        <i class="fa fa-clone left"></i> View News</a>
+                </div>
+            </div>
+          `;
+        });
+    }
+
+    $('#searchnews').html(output);
 }

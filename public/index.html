@@ -113,7 +113,15 @@
             <script src="js/main.js"></script>
             <script src="js/serviceworker.js"></script>
             <script>
-                getNewsFromIDB('headline','everything','publishedAt')
+              getNewsFromIDB('everything');
+              if(($('#searchnews > div').length) == 0){
+                  getNewsFromIDB('countrynews');
+                  if(($('#searchnews > div').length) == 0){
+                      getNewsFromIDB('sourcenews');
+                  }
+              }
+
+
             </script>
         </div>
 

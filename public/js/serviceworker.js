@@ -5,7 +5,6 @@ if('serviceWorker' in navigator) {
         .then(function (registration) {
             console.log('Registered', registration.scope)
         }).catch(function (err) {
-       console.log(err)
+
     });
-    console.log('Worker Active');
 }
